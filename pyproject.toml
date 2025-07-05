@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agentic-systems-chatbot-ui"
+version = "0.1.0"
+description = "Streamlit-based Chat UI for AgenticSystems"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+dependencies = [
+    "streamlit>=1.0",
+    "openai>=1.0",
+    "python-dotenv>=1.0",
+    "watchdog>=2.0"
+]

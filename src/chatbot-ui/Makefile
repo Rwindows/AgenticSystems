@@ -1,5 +1,5 @@
 run-streamlit:
-    streamlit run streamlit_app.py
+    streamlit run /src/chatbot-ui/streamlit_app.py
 
 	build-docker-streamlit:
 		docker build -t /src/chatbot-ui/streamlit-app .

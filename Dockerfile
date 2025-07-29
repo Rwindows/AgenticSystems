@@ -4,12 +4,17 @@ FROM python:3.12-slim
 # Set working directory
 WORKDIR /app
 
-# Copy project files
-COPY . /app
+# Copy only necessary files first
+COPY pyproject.toml README.md ./
+COPY src/chatbot-ui/core ./src/chatbot-ui/core
+COPY src/chatbot-ui/streamlit_app.py ./src/chatbot-ui/
+COPY src/chatbot-ui/Makefile ./src/chatbot-ui/
+COPY src/chatbot-ui/retrival.py ./src/chatbot-ui/
 
 # Install dependencies
 RUN pip install --no-cache-dir --upgrade pip
-RUN pip install --no-cache-dir streamlit openai python-dotenv watchdog
+RUN pip install --no-cache-dir -e .
+RUN pip install --no-cache-dir qdrant-client
 
 # Expose port for Streamlit
 EXPOSE 8501

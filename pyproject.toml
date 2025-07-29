@@ -10,8 +10,11 @@ readme = "README.md"
 requires-python = ">=3.8"
 license = { text = "MIT" }
 dependencies = [
-    "streamlit>=1.0",
-    "openai>=1.0",
-    "python-dotenv>=1.0",
-    "watchdog>=2.0"
+    "streamlit",
+    "openai",
+    "python-dotenv",
+    "watchdog",
+    "qdrant-client",
+    "pydantic-settings",
+    "langsmith"
 ]

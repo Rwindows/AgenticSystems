@@ -1,7 +1,9 @@
 import streamlit as st
 import os
 from openai import OpenAI
-from core.config import OPENAI_API_KEY
+from core.config import config
+from retrival import rag_pipeline
+
 
 ## Lets create a sidebar and list the available models
 st.sidebar.title("Chat-UI")
@@ -14,7 +16,7 @@ st.session_state.model = model
 
 #make dynamic and provide the client ready
 
-client = OpenAI(api_key=OPENAI_API_KEY)  # Initialize client using imported API key
+client = OpenAI(api_key=config.OPENAI_API_KEY)  # Initialize client using imported API key
 
 if "messages" not in st.session_state:
     st.session_state.messages = [{"role": "assistant", "content": "How can I help you today?"}]
@@ -30,9 +32,11 @@ if prompt := st.chat_input("What is up?"):
     
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):
-            response = client.chat.completions.create(
-                model=model,
-                messages=st.session_state.messages,
-            )
-            st.write(response.choices[0].message.content)
-            st.session_state.messages.append({"role": "assistant", "content": response.choices[0].message.content})
+            # response = client.chat.completions.create(
+            #     model=model,
+            #     messages=st.session_state.messages,
+            # )
+            response = rag_pipeline(prompt)
+            answer = response["answer"]
+            st.write(answer)
+            st.session_state.messages.append({"role": "assistant", "content": answer})

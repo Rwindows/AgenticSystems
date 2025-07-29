@@ -39,3 +39,7 @@ build/
 dist/
 *.egg-info/
 .eggs/
+
+.qdrant_data
+.qdrant_data/*
+

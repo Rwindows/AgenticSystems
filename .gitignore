@@ -43,3 +43,8 @@ dist/
 .qdrant_data
 .qdrant_data/*
 
+# Large data files
+src/chatbot-ui/notebook/*.jsonl
+# Exclude small sample files from gitignore
+!src/chatbot-ui/notebook/*sample*.jsonl
+

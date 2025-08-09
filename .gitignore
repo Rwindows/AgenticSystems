@@ -48,4 +48,10 @@ src/chatbot-ui/notebook/*.jsonl
 # Exclude small sample files from gitignore
 !src/chatbot-ui/notebook/*sample*.jsonl
 
+postgres_data/
+postgres_data/*
+qdrant_data/
+qdrant_data/*
+
+
 

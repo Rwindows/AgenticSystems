@@ -4,12 +4,15 @@ FROM python:3.12-slim
 # Set working directory
 WORKDIR /app
 
+# Set environment variables
+ENV PYTHONPATH="/app/src:$PYTHONPATH"
+
 # Copy only necessary files first
 COPY pyproject.toml README.md ./
 COPY src/chatbot-ui/core ./src/chatbot-ui/core
 COPY src/chatbot-ui/streamlit_app.py ./src/chatbot-ui/
 COPY src/chatbot-ui/Makefile ./src/chatbot-ui/
-COPY src/chatbot-ui/retrival.py ./src/chatbot-ui/
+COPY src/api/ ./src/api/
 
 # Install dependencies
 RUN pip install --no-cache-dir --upgrade pip

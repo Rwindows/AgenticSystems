@@ -10,11 +10,24 @@ readme = "README.md"
 requires-python = ">=3.8"
 license = { text = "MIT" }
 dependencies = [
-    "streamlit",
-    "openai",
-    "python-dotenv",
-    "watchdog",
-    "qdrant-client",
-    "pydantic-settings",
-    "langsmith"
+    "fastapi>=0.68.0",
+    "uvicorn[standard]>=0.15.0",
+    "python-multipart>=0.0.5",
+    "httpx>=0.23.0",
+    "python-jose[cryptography]>=3.3.0",
+    "passlib[bcrypt]>=1.7.4",
+    "python-dotenv>=0.19.0",
+    "pydantic-settings>=2.0.0",
+    "openai>=1.0.0",
+    "qdrant-client>=1.1.0",
+    "langsmith>=0.0.1",
+    "instructor>=0.1.0",
+    "streamlit>=1.0.0",
+    "watchdog>=2.0.0",
+    "langchain-core>=0.1.0",
+    "langchain>=0.1.0",
+    "langgraph>=0.1.0",
+    "langgraph-checkpoint-postgres>=0.1.0",
+    "psycopg2-binary>=2.9.0",
+    "requests>=2.25.0"
 ]

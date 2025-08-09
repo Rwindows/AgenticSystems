@@ -14,6 +14,8 @@ class Config(BaseSettings):
     EMBEDDING_MODEL: str
     GENERATION_MODEL: str
     GENERATION_MODEL_PROVIDER: str
+    API_URL: str  = "http://api:8000"
+    
 
 
 

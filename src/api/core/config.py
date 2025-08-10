@@ -12,9 +12,8 @@ class Config(BaseSettings):
     LANGSMITH_ENDPOINT: str
     LANGSMITH_API_KEY: str
     LANGSMITH_PROJECT: str
-    RAG_PROMPT_TEMPLATE_PATH: str = "src/api/rag/prompts/rag_generation.yaml"
+    RAG_PROMPT_TEMPLATE_PATH: str = "/app/src/api/rag/prompts/rag_generation.yaml"
     POSTGRES_CONN_STRING: str = "postgresql://langgraph_user:langgraph_password@postgres:5432/langgraph_db"
-    
     model_config = SettingsConfigDict(env_file=".env")
 
 

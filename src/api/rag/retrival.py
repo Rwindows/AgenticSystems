@@ -6,6 +6,8 @@ from langsmith import traceable, get_current_run_tree
 import instructor
 from pydantic import BaseModel
 from typing import List
+import json
+from api.rag.utils.utils import prompt_template_config
 
 load_dotenv()
 
@@ -90,40 +92,9 @@ OUTPUT_SCHEMA = {
 @traceable(name="build_prompt", run_type="prompt")
 def build_prompt(context, question):
     formatted_context = process_context(context)
-    prompt = f"""
-
-    you are the shopping assistant that can answer questions about the product in stock.
-
-you will be given a question and a list of context.
-Instructions:
-- you need to answer the question bsed on the provided context only
-- Never use word context and refer to it as the avliable products
-- As an output you need to provide:
-
-* Than answer to the question based on the provided context.
-
-- The answer to the question should contain dtailed information about the product and return with detailed specification bullet points.
-
- * The answer to the question based on the retrieved context.
- * The list of the indexes from the chunks returned from all tool calls that were used to answer the question. If more than one chunk was used to compile the answer from a single tool call, be sure to return all of them.
- * Short description of the item based on the retrieved context.
-
-- The answer to the question should contain detailed information about the product and returned with detailed specification in bullet points.
-- The short description should have the name of the item.
-
-   <OUTPUT JSON SCHEMA>
-        {{ output_json_schema }}
-        </OUTPUT JSON SCHEMA>
-
-
-Context:
-{formatted_context}
-
-Question:
-{question}
-
-    """
+    prompt_template = prompt_template_config(config.RAG_PROMPT_TEMPLATE_PATH, "rag_generation")
     
+    prompt = prompt_template.render(processed_context=formatted_context, question=question, output_json_schema=json.dumps(OUTPUT_SCHEMA, indent=2))
     # Update run metadata for LangSmith
     current_run = get_current_run_tree()
     if current_run:
